@@ -9,12 +9,23 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private GameObject _connectBTNS;
     [SerializeField] private GameObject _disconnectBTN;
 
-#if UNITY_SERVER && !UNITY_EDITOR
+
+//#if UNITY_SERVER && !UNITY_EDITOR
     public void Start()
     {
-        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientDisconnectCallback;
     }
-#else
+//#else
+
+    private void OnClientDisconnectCallback(ulong clinetID)
+    {
+        if(NetworkManager.Singleton.LocalClientId == clinetID)
+        {
+            //_disconnectBTN.SetActive(false);
+            //_connectBTNS.SetActive(true);
+            NetworkUIElementsVisibility(false, true);
+        }
+    }
     public void StartSever()
     {
         NetworkUIElementsVisibility(false, true);
@@ -44,5 +55,5 @@ public class NetworkManagerUI : MonoBehaviour
         _connectBTNS.SetActive(connectBTNS);
         _disconnectBTN.SetActive(disconnectBTN);
     }
-#endif
+//#endif
 }

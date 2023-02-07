@@ -7,6 +7,8 @@ public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 5;
+    [SerializeField]
+    private CharacterController _characterController;
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,8 @@ public class PlayerMovement : NetworkBehaviour
 
             transform.LookAt(transform.position + _movementDirection);
 
-            transform.localPosition += _movementDirection * Time.deltaTime * _movementSpeed;
+            // transform.localPosition += _movementDirection * Time.deltaTime * _movementSpeed;
+            _characterController.Move(_movementDirection * Time.deltaTime * _movementSpeed);
         }
 
     }

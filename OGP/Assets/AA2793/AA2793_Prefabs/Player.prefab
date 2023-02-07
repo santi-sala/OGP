@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6594479795716377289}
   - component: {fileID: -2686489356783267372}
   - component: {fileID: 1488253122493322232}
-  - component: {fileID: 2662101691346337813}
+  - component: {fileID: -6303493833978882407}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 2
+  _characterController: {fileID: -6303493833978882407}
 --- !u!114 &1488253122493322232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,8 +274,8 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 1
   Interpolate: 1
---- !u!136 &2662101691346337813
-CapsuleCollider:
+--- !u!143 &-6303493833978882407
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -283,10 +284,14 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  serializedVersion: 2
   m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6843348834370238064
 GameObject:
   m_ObjectHideFlags: 0
