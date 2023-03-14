@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NetworkManagerUI : MonoBehaviour
@@ -48,6 +49,8 @@ public class NetworkManagerUI : MonoBehaviour
     {
         NetworkUIElementsVisibility(true, false);
         NetworkManager.Singleton.Shutdown();
+        //Scene scene = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(scene.name);
     }
 
     private void NetworkUIElementsVisibility(bool connectBTNS, bool disconnectBTN)

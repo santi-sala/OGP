@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DespawnPoolObjects : NetworkBehaviour
 {
-    public override void OnNetworkDespawn()
+    public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
@@ -13,11 +13,13 @@ public class DespawnPoolObjects : NetworkBehaviour
         }
     }
 
+
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(3f);
         NetworkObject no = gameObject.GetComponent<NetworkObject>();
         no.Despawn();
+
     }
 
 }
