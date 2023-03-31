@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AA2793/AA2793_Scenes/AA2793_OGP.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/AA2793/AA2793_Scenes/2ndScene.unity
+    guid: 5cc24b4606308524ab6a4c84b6aad68e
   m_configObjects: {}

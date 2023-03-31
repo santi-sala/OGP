@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    [SerializeField]
-    private float _movementSpeed = 5;
+    
+    private float _movementSpeed = 10;
     [SerializeField]
     private CharacterController _characterController;
     
@@ -19,7 +19,14 @@ public class PlayerMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsOwner)
+        ChangePlayerMovementSpeed();
+        PlayerMovementInput();       
+
+    }
+
+    private void PlayerMovementInput()
+    {
+        if (IsOwner)
         {
             Vector3 _movementDirection = Vector3.zero;
 
@@ -45,6 +52,20 @@ public class PlayerMovement : NetworkBehaviour
             // transform.localPosition += _movementDirection * Time.deltaTime * _movementSpeed;
             _characterController.Move(_movementDirection * Time.deltaTime * _movementSpeed);
         }
+    }
 
+    private void ChangePlayerMovementSpeed()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "Collectable")
+            {
+                _movementSpeed = 3;
+            }
+            else
+            {
+                _movementSpeed = 20;
+            }
+        }
     }
 }

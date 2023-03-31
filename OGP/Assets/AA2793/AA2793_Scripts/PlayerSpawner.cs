@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _playerPrefab;
+    public static PlayerSpawner Instance;
+    [SerializeField] private GameObject _playerPrefab;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
@@ -37,5 +40,10 @@ public class PlayerSpawner : MonoBehaviour
             NetworkObject no = go.GetComponent<NetworkObject>();
             no.SpawnAsPlayerObject(clientID);
         }
+    }
+
+    public void StopListener()
+    {
+        NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
     }
 }

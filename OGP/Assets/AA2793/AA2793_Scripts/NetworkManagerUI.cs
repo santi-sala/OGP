@@ -41,12 +41,16 @@ public class NetworkManagerUI : MonoBehaviour
 
     public void StartClient()
     {
+        PlayerCountServerRpc();
+
         NetworkUIElementsVisibility(false, true);
         NetworkManager.Singleton.StartClient();
+
     }
 
     public void Disconnect()
     {
+        PlayerSpawner.Instance.StopListener();
         NetworkUIElementsVisibility(true, false);
         NetworkManager.Singleton.Shutdown();
         //Scene scene = SceneManager.GetActiveScene();
@@ -58,5 +62,21 @@ public class NetworkManagerUI : MonoBehaviour
         _connectBTNS.SetActive(connectBTNS);
         _disconnectBTN.SetActive(disconnectBTN);
     }
-//#endif
+
+    [ServerRpc(RequireOwnership = false)]
+    private bool PlayerCountServerRpc() 
+    { 
+        int clientCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
+        Debug.Log("Im here!!!");
+
+        if (clientCount > 4)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    //#endif
 }
